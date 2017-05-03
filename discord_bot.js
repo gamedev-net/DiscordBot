@@ -210,7 +210,13 @@ bot.on("ready", function () {
 	console.log("Logged in! Serving in " + bot.guilds.array().length + " servers");
 	require("./plugins.js").init();
 	console.log("type "+Config.commandPrefix+"help in Discord for a commands list.");
-	bot.user.setGame(Config.commandPrefix+"help | " + bot.guilds.array().length +" Servers"); 
+	
+	if (Config.hasOwnProperty("profileMsg")) {
+	    bot.user.setGame(Config.profileMsg);
+	}
+    else {
+        bot.user.setGame("");
+    }
 });
 
 bot.on("disconnected", function () {
